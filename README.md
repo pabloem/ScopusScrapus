@@ -5,6 +5,14 @@ small Python module allows you to access it programatically with Python.
 Documentation for the Scopus Search API is available here: http://api.elsevier.com/documentation/SCOPUSSearchAPI.wadl
 Documentation on how to construct then search queries is here: http://api.elsevier.com/documentation/search/SCOPUSSearchTips.htm
 
+## Installation
+
+The little ScopusScrapus package is available on PyPi, and it can be easily installed:
+
+```
+pip3 install ScopusScrapus
+```
+
 ## Usage
 To use the Scopus Search API (and all other APIs provided by Elsevier) require an API key to use. To get one you
 should visit their Devlopers site here: http://dev.elsevier.com/index.html.
