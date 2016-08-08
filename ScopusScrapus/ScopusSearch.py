@@ -12,7 +12,7 @@ class ScopusSearchQuery:
                       'httpAccept':'application/json'}
     _baseUrl = "http://api.elsevier.com/content/search/scopus?"
 
-    def __init__(self,key,params):
+    def __init__(self,key,params,timeout=60):
         self._apiKey = key
         self._keys = None
         if type(key) == type([]):
@@ -25,6 +25,7 @@ class ScopusSearchQuery:
         self._nextUrl = None
         self._i = 0
         self._count = 0
+        self._timeout = timeout
 
     def _make_search_url(self):
         params = self._params
@@ -53,7 +54,7 @@ class ScopusSearchQuery:
         if url is None: url = self._make_search_url()
         if url == "done": raise StopIteration()
 
-        qRes = r.get(url)
+        qRes = r.get(url,timeout=self._timeout)
         dta = qRes.json()
         if qRes.status_code == 429:
             return self._manageQuotaExcess(raiseOnQE)
@@ -67,7 +68,7 @@ class ScopusSearchQuery:
         if len(nxtLink) > 0: self._nextUrl = nxtLink[0]['@href']
         else: self._nextUrl = "done" # Nasty? Sorry : )
         return dta['search-results']['entry'] # Returning only the obtained results
-    
+
     def __iter__(self):
         return self
 
