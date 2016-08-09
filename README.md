@@ -24,10 +24,10 @@ published between 2008 and 2009, you do the following:
 from ScopusScrapus import ScopusSearchQuery
 
 params = {'query':'TITLE-ABS-KEY(arctic)', 'date':'2008-2009'}
-ssq = ScopusSearchuery(key,params)
+ssq = ScopusSearchQuery(key,params)
 # Key is your API key, and params is a dictionary
 # containing your query and other fields.
-
+# optionally, a timeout parameter can be passed to the constructor. It should contain a number of seconds after which the query will be aborted if no response has been received from the scopus api. In this case, an exception requests.exceptions.ReadTimeout will be raised
 # The default parameters are:
 
 defaultParams = {'count':100,
